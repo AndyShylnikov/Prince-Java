@@ -6,6 +6,8 @@ import java.awt.*;
 
 
 public abstract class GameState {
+    protected boolean isDone;
+
     protected GameState(GameStateManager manager) {
         this.manager = manager;
     }
@@ -21,4 +23,8 @@ public abstract class GameState {
     public abstract void keyPressed(int k);
 
     public abstract void keyReleased(int k);
+
+    public boolean isDone() {
+        return isDone;
+    }
 }

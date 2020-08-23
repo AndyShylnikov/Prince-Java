@@ -27,18 +27,23 @@ public class GameStateManager {
     }
 
     public void update() {
+        currentStateInstance.update();
+        if (currentStateInstance.isDone()) {
+//            TODO: perform handling ending of state
+        }
     }
 
     public void draw(Graphics2D g) {
+        currentStateInstance.draw(g);
 
     }
 
     public void keyPressed(int e) {
+        currentStateInstance.keyPressed(e);
 
     }
 
     public void keyReleased(int e) {
+        currentStateInstance.keyReleased(e);
     }
-
-
 }

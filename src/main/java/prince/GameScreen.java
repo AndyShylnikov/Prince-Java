@@ -15,6 +15,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static final int WIDTH = 320;
     public static final int HEIGHT = 200;
 
+    private int scale = 1;
+
     private Thread thread;
     private boolean isRunning;
     private int FPS = 8;
@@ -72,17 +74,20 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }
         return instance;
     }
+
     private void init() {
         img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) img.getGraphics();
         isRunning = true;
         manager = GameStateManager.getInstance();
     }
+
     private void render() {
         Graphics g2 = getGraphics();
         g2.drawImage(img, 0, 0, null);
         g2.dispose();
     }
+
     private void draw() {
         manager.draw(g);
     }
@@ -91,6 +96,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         manager.update();
 
     }
+
     /**
      * Notifies this component that it now has a parent component.
      * When this method is invoked, the chain of parent components is
@@ -108,5 +114,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             addKeyListener(this);
             thread.start();
         }
+    }
+
+    public int getScale() {
+        return scale;
     }
 }

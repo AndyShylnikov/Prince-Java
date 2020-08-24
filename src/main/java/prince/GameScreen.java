@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 public class GameScreen extends JPanel implements Runnable, KeyListener {
     private static GameScreen instance;
     private GameStateManager manager;
-
+    private JFrame frame;
 
     // Origin resolution of game TODO: make dynamic change of resoution
     public static final int WIDTH = 320;
@@ -26,10 +26,20 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private BufferedImage img;
 
     private GameScreen() {
+
         super();
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(WIDTH * scale, HEIGHT * scale));
         setFocusable(true);
         requestFocus();
+        frame = new JFrame("Prince of Persia"); //TODO: move title to json
+        frame.setBackground(Color.BLACK);
+        frame.setContentPane(this);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);//making the frame visible
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
 
     @Override

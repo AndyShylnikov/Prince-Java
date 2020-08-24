@@ -2,6 +2,7 @@ package prince;
 
 
 import prince.states.GameState;
+import prince.states.LoadingState;
 
 import java.awt.*;
 
@@ -13,7 +14,8 @@ public class GameStateManager {
     private static GameStateManager instance;
 
     private GameStateManager() {
-
+        currentStateInstance = new LoadingState(this);
+        currentStateInstance.init();
     }
 
     public static GameStateManager getInstance() {

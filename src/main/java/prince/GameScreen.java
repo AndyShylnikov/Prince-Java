@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
-    private static GameScreen instance;
+    private static GameScreen instance = null;
     private GameStateManager manager;
     private JFrame frame;
 
@@ -31,6 +31,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         setPreferredSize(new Dimension(WIDTH * scale, HEIGHT * scale));
         setFocusable(true);
         requestFocus();
+
         frame = new JFrame("Prince of Persia"); //TODO: move title to json
         frame.setBackground(Color.BLACK);
         frame.setContentPane(this);
@@ -78,7 +79,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }
     }
 
-    public static GameScreen getInstance() {
+    public synchronized static GameScreen getInstance() {
+        GameScreen result = instance;
         if (instance == null) {
             instance = new GameScreen();
         }
@@ -86,7 +88,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
 
     private void init() {
-        img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+        img = new BufferedImage(WIDTH * scale, HEIGHT * scale, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) img.getGraphics();
         isRunning = true;
         manager = GameStateManager.getInstance();

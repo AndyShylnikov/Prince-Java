@@ -1,4 +1,4 @@
-package prince;
+package prince.enums;
 
 public enum GameStateEnum {
     MENU_STATE,

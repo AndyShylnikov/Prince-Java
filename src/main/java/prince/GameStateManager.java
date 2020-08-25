@@ -1,6 +1,7 @@
 package prince;
 
 
+import prince.enums.GameStateEnum;
 import prince.states.GameState;
 import prince.states.LoadingState;
 

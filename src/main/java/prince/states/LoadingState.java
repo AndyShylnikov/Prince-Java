@@ -2,7 +2,6 @@ package prince.states;
 
 import prince.GameScreen;
 import prince.GameStateManager;
-import prince.utils.LevelHelper;
 
 import java.awt.*;
 import java.io.File;
@@ -25,10 +24,9 @@ public class LoadingState extends GameState {
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
-        LevelHelper.loadLevels();
-        isDone = true;
 
     }
+
 
 
     @Override

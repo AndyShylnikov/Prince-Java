@@ -12,10 +12,11 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 
-public class SpriteLoader {
+public class SpriteLoader extends BaseLoader {
     File spriteFolder;
-    GameStorage storage=GameStorage.getInstance();
-    public void loadSprites() {
+
+    @Override
+    public void loadItems() {
 
         spriteFolder = new File(Constants.SPRITES_FOLDER_PATH);
         goThroughFolder(spriteFolder);
@@ -74,6 +75,7 @@ public class SpriteLoader {
         }
 
     }
+
 }
 
 

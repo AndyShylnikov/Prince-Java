@@ -2,6 +2,8 @@ package prince.states;
 
 import prince.GameScreen;
 import prince.GameStateManager;
+import prince.loaders.AnimationLoader;
+import prince.loaders.LevelLoader;
 import prince.loaders.SpriteLoader;
 
 import java.awt.*;
@@ -25,7 +27,7 @@ public class LoadingState extends GameState {
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
-        new SpriteLoader().loadSprites();
+        new SpriteLoader().loadItems();
 
     }
 

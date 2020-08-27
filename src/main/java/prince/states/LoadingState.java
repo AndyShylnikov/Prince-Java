@@ -28,6 +28,7 @@ public class LoadingState extends GameState {
             e.printStackTrace();
         }
         new SpriteLoader().loadItems();
+        new AnimationLoader().loadItems();
 
     }
 

@@ -9,4 +9,6 @@ public final class Constants {
     public static final String SPRITES_FOLDER_PATH = "src/main/resources/sprites";
 
     public static final String SPRITE_TYPE = "dos"; //TODO: Change it to "mac" if need
+
+    public static final String ANIMATION_PATH = "src/main/resources/animations";
 }

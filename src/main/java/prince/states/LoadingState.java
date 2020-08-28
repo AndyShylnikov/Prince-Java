@@ -4,6 +4,7 @@ import prince.GameScreen;
 import prince.GameStateManager;
 import prince.loaders.AnimationLoader;
 import prince.loaders.LevelLoader;
+import prince.loaders.SceneLoader;
 import prince.loaders.SpriteLoader;
 
 import java.awt.*;
@@ -29,6 +30,7 @@ public class LoadingState extends GameState {
         }
         new SpriteLoader().loadItems();
         new AnimationLoader().loadItems();
+        new LevelLoader().loadItems();
 
     }
 

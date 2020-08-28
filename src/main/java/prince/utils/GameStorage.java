@@ -2,7 +2,7 @@ package prince.utils;
 
 import prince.pojo.AnimationElement;
 import prince.pojo.FrameDefine;
-import prince.Level;
+import prince.uielems.Level;
 import prince.pojo.SwordAnimation;
 import prince.uielems.Sprite;
 
@@ -65,7 +65,8 @@ public class GameStorage {
     public void addFrameDef(String name, List<FrameDefine> frameDefines) {
         frameDefs.put(name, frameDefines);
     }
-    public List<SwordAnimation> getSwordAnimations(){
+
+    public List<SwordAnimation> getSwordAnimations() {
         return swordAnimations;
     }
 

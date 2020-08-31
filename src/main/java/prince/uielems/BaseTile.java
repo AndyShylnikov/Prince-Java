@@ -20,13 +20,15 @@ public class BaseTile extends SourceTile {
 
     protected Map<String, Map<String, Object>> child;
     protected boolean isMasked;
-    protected boolean shouldBeRedrawen;
+    protected boolean redraw;
     protected boolean hasObject;
 
     protected Room room;
     protected Level level;
 
     protected int roomX, roomY;
+
+    protected String tileKey;
 
 
     public BaseTile(int element, int modifier, Room room, Level level) {
@@ -35,7 +37,7 @@ public class BaseTile extends SourceTile {
         this.modifier = modifier;
         this.room = room;
         this.level = level;
-
+        tileKey = level.getLevelType().toString().toLowerCase();
         width = Constants.BLOCK_WIDTH;
         height = Constants.BLOCK_HEIGHT;
 
@@ -128,11 +130,11 @@ public class BaseTile extends SourceTile {
     }
 
     public boolean isShouldBeRedrawen() {
-        return shouldBeRedrawen;
+        return redraw;
     }
 
     public BaseTile setShouldBeRedrawen(boolean shouldBeRedrawen) {
-        this.shouldBeRedrawen = shouldBeRedrawen;
+        this.redraw = shouldBeRedrawen;
         return this;
     }
 
@@ -173,7 +175,7 @@ public class BaseTile extends SourceTile {
 
     public void setMask(boolean masked) {
         isMasked = masked;
-        shouldBeRedrawen = true;
+        redraw = true;
     }
 
     public boolean is_walkable() {
@@ -239,10 +241,21 @@ public class BaseTile extends SourceTile {
                 b.y < (bounds.y + bounds.height);
 
     }
-    public void update(){}
-    public void raise(boolean stuck){}
-    public void drop(){}
-    public void push(boolean stuck,boolean sound){}
+
+    public void update() {
+    }
+
+    public void raise(boolean stuck) {
+    }
+
+    public void raise(){
+
+    }
+    public void drop() {
+    }
+
+    public void push(boolean stuck, boolean sound) {
+    }
 
 
     class Bounds {

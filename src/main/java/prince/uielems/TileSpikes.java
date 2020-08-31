@@ -1,7 +1,12 @@
 package prince.uielems;
 
+import prince.enums.SpikeStateEnum;
+import prince.enums.TileTypeEnum;
+
+import static prince.enums.SpikeStateEnum.*;
+
 public class TileSpikes extends BaseTile {
-    private int state;
+    private SpikeStateEnum state;
     private int stage;
     private boolean redraw;
     private boolean mortal;
@@ -23,11 +28,11 @@ public class TileSpikes extends BaseTile {
 
     }
 
-    public int getState() {
+    public SpikeStateEnum getState() {
         return state;
     }
 
-    public TileSpikes setState(int state) {
+    public TileSpikes setState(SpikeStateEnum state) {
         this.state = state;
         return this;
     }
@@ -57,5 +62,51 @@ public class TileSpikes extends BaseTile {
     public TileSpikes setMortal(boolean mortal) {
         this.mortal = mortal;
         return this;
+    }
+
+    @Override
+    public void update() {
+        if (modifier != 0) {
+            return;
+        }
+        if (state == SpikeStateEnum.STATE_RAISING) {
+            stage++;
+            child.get("back").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage);
+            child.get("front").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage + "_fg");
+            if (stage == 5) {
+                state = STATE_FULL_OUT;
+                stage = 0;
+            }
+            redraw = true;
+        } else if (state == STATE_FULL_OUT) {
+            stage++;
+            if (stage > 15) {
+                state = STATE_DROPPING;
+                stage = 5;
+            }
+            redraw = true;
+        } else if (state == STATE_DROPPING) {
+            stage--;
+            if (stage == 3) {
+                stage--;
+            }
+            child.get("back").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage);
+            child.get("front").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage + "_fg");
+            if (stage == 0) {
+                state = STATE_INACTIVE;
+            }
+            redraw = true;
+        }
+    }
+
+    @Override
+    public void raise(boolean stuck) {
+        if (state == STATE_INACTIVE) {
+            state = STATE_RAISING;
+//    PlaySound("spikes")
+
+        } else if (state == STATE_FULL_OUT) {
+            stage = 0;
+        }
     }
 }

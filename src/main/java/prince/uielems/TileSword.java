@@ -49,4 +49,20 @@ public class TileSword extends BaseTile {
         this.hasObject = hasObject;
         return this;
     }
+
+    @Override
+    public void update() {
+        if (hasObject) {
+            if (stage == -1) {
+                back = level.getLevelType().toString().toLowerCase() + "_" + element;
+                tick = ((int) (Math.random() * 128)) + 39;
+                redraw = true;
+            }
+            stage++;
+            if (stage == tick) {
+                stage = -1;
+                redraw = true;
+            }
+        }
+    }
 }

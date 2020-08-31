@@ -13,8 +13,9 @@ public class TileSlicer extends BaseTile {
 
     public TileSlicer(BaseTile tile) {
         super(tile.element, tile.modifier, tile.room, tile.level);
-        this.child.get("back").put("framename", level.getLevelType().toString().toLowerCase() + "_slicer_5");
-        this.child.get("front").put("framename", child.get("back").get("framename") + "_fg");
+        childBack.frameName = tileKey + "_slicer_5";
+        childBack.frameName = tileKey + "_slicer_5_fg";
+
         stage = 13;
         state = SlicerStateEnum.STATE_WAITING;
         blood = new SlicerBlood(false, "slicer_blood_5");
@@ -82,8 +83,9 @@ public class TileSlicer extends BaseTile {
                 stage = 0;
                 active = false;
             } else if (stage <= 5) {
-                child.get("back").put("frameName", level.getLevelType().toString().toLowerCase() + "_slicer_" + stage);
-                child.get("front").put("frameName", level.getLevelType().toString().toLowerCase() + "_slicer_" + stage + "_fg");
+                childBack.frameName = tileKey + "_slicer_" + stage;
+                childFront.frameName = childBack.frameName + "_fg";
+
                 if (blood.visible) {
                     blood.frameName = "slicer_blood_" + stage;
                 }

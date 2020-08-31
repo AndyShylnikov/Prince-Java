@@ -74,8 +74,8 @@ public class TileButton extends BaseTile {
         if (active) {
             if (stage == stageMax) {
                 if (!stuck) {
-                    front = level.getLevelType().toString().toLowerCase() + "_" + element + "_fg";
-                    back = level.getLevelType().toString().toLowerCase() + "_" + element;
+                    front = tileKey + "_" + element + "_fg";
+                    back = tileKey + "_" + element;
                     active = false;
                     redraw = true;
                 }
@@ -93,7 +93,7 @@ public class TileButton extends BaseTile {
             }
             back += "down";
             if (sound) {
-//TODO: Playsound
+//PlaySound("button-open") TODO
             }
         }
         if (!stuck) {

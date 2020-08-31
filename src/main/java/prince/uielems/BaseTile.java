@@ -4,7 +4,6 @@ import prince.Constants;
 import prince.enums.TileTypeEnum;
 import prince.pojo.Room;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static prince.enums.TileTypeEnum.*;
@@ -18,7 +17,9 @@ public class BaseTile extends SourceTile {
     protected String back;
     protected String front;
 
-    protected Map<String, Map<String, Object>> child;
+    protected TileChild childBack;
+    protected TileChild childFront;
+
     protected boolean isMasked;
     protected boolean redraw;
     protected boolean hasObject;
@@ -41,21 +42,14 @@ public class BaseTile extends SourceTile {
         width = Constants.BLOCK_WIDTH;
         height = Constants.BLOCK_HEIGHT;
 
-        back = level.getLevelType().toString().toLowerCase() + "_" + element;
+        back = tileKey + "_" + element;
         front = back + "_fg";
-        child = new HashMap<>() {{
-            put("back", new HashMap<>() {{
-                put("x", 0);
-                put("y", 0);
-                put("visible", true);
-            }});
-            put("front", new HashMap<>() {{
-                put("x", 0);
-                put("y", 0);
-                put("visible", true);
-            }});
-        }};
 
+        childBack = new TileChild();
+        childFront = new TileChild();
+
+        childBack.visible = true;
+        childFront.visible = true;
     }
 
     public int getX() {
@@ -108,15 +102,6 @@ public class BaseTile extends SourceTile {
 
     public BaseTile setFront(String front) {
         this.front = front;
-        return this;
-    }
-
-    public Map<String, Map<String, Object>> getChild() {
-        return child;
-    }
-
-    public BaseTile setChild(Map<String, Map<String, Object>> child) {
-        this.child = child;
         return this;
     }
 
@@ -248,15 +233,23 @@ public class BaseTile extends SourceTile {
     public void raise(boolean stuck) {
     }
 
-    public void raise(){
+    public void raise() {
 
     }
+
     public void drop() {
     }
 
     public void push(boolean stuck, boolean sound) {
     }
 
+    public TileChild getChildBack() {
+        return childBack;
+    }
+
+    public TileChild getChildFront() {
+        return childFront;
+    }
 
     class Bounds {
         int x, y, width, height;
@@ -269,4 +262,9 @@ public class BaseTile extends SourceTile {
         }
     }
 
+    class TileChild {
+        int x, y, height;
+        boolean visible;
+        String frameName;
+    }
 }

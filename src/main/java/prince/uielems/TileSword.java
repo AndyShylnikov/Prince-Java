@@ -54,7 +54,7 @@ public class TileSword extends BaseTile {
     public void update() {
         if (hasObject) {
             if (stage == -1) {
-                back = level.getLevelType().toString().toLowerCase() + "_" + element;
+                back = tileKey + "_" + element;
                 tick = ((int) (Math.random() * 128)) + 39;
                 redraw = true;
             }

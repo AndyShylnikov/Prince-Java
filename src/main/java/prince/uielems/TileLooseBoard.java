@@ -29,14 +29,14 @@ public class TileLooseBoard extends BaseTile {
             if (stage == frames.length + 3) {
                 state = LooseStateEnum.STATE_FALLING;
                 stage = 0;
-                back = level.getLevelType().toString().toLowerCase() + "_falling";
+                back = tileKey + "_falling";
             } else if (stage >= frames.length) {
                 stage++;
             } else if (stage == 3 && !fall) {
-                back = level.getLevelType().toString().toLowerCase() + "_" + TileTypeEnum.TILE_LOOSE_BOARD;
+                back = tileKey + "_" + TileTypeEnum.TILE_LOOSE_BOARD;
                 state = LooseStateEnum.STATE_INACTIVE;
             } else {
-                back = level.getLevelType().toString().toLowerCase() + frames[stage];
+                back = tileKey + frames[stage];
                 stage++;
                 if (stage == 1 || stage == 3 || stage == 7) {
 //                    PlaySound("loose-floor-" + rnd(3).toStr())

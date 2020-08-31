@@ -13,15 +13,15 @@ public class TileGate extends BaseTile {
     public TileGate(BaseTile tile) {
         super(tile.element, tile.modifier, tile.room, tile.level);
         this.cropY = -tile.modifier * 46;
+        childBack.frameName = tileKey + "_gate";
+        childBack.x=0;
+        childBack.y=0;
 
-        this.child.get("back").put("framename", level.getLevelType().toString().toLowerCase() + "_gate");
-        this.child.get("back").put("x", 0);
-        this.child.get("back").put("y", 0);
+        childFront.frameName = tileKey + "_gate_fg";
+        childBack.x=32;
+        childBack.y=16;
+        childBack.visible=false;
 
-        this.child.get("front").put("framename", level.getLevelType().toString().toLowerCase() + "_gate_fg");
-        this.child.get("front").put("x", 32);
-        this.child.get("front").put("y", 16);
-        this.child.get("front").put("visible", false);
         this.state = tile.modifier;
     }
 
@@ -103,12 +103,12 @@ public class TileGate extends BaseTile {
                     cropY = 0;
                     state = GateStateEnum.STATE_CLOSED.ordinal();
                     if (isAudio) {
-//                        PlaySound("gate-end", true)
+//                        PlaySound("gate-end", true) TODO
                     }
                 }
                 stage++;
                 if (isAudio) {
-//                    PlaySound("gate-close", true)
+//                    PlaySound("gate-close", true) TODO
 
                 }
             } else {

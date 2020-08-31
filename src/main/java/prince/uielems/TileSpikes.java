@@ -22,9 +22,8 @@ public class TileSpikes extends BaseTile {
         else if (tile.modifier > 6)
             modifier = 9 - tile.modifier;
 
-        this.child.get("back").put("framename", level.getLevelType().toString().toLowerCase() + "_" + element + "_" + modifier);
-        this.child.get("front").put("framename", child.get("back").get("framename") + "_fg");
-
+        childBack.frameName = tileKey + "_" + element + "_" + modifier;
+        childFront.frameName = childBack.frameName + "_fg";
 
     }
 
@@ -71,8 +70,8 @@ public class TileSpikes extends BaseTile {
         }
         if (state == SpikeStateEnum.STATE_RAISING) {
             stage++;
-            child.get("back").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage);
-            child.get("front").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage + "_fg");
+            childBack.frameName = tileKey + TileTypeEnum.TILE_SPIKES + stage;
+            childFront.frameName = childBack.frameName + "_fg";
             if (stage == 5) {
                 state = STATE_FULL_OUT;
                 stage = 0;
@@ -90,8 +89,9 @@ public class TileSpikes extends BaseTile {
             if (stage == 3) {
                 stage--;
             }
-            child.get("back").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage);
-            child.get("front").put("frameName", level.getLevelType().toString().toLowerCase() + TileTypeEnum.TILE_SPIKES + stage + "_fg");
+            childBack.frameName = tileKey + TileTypeEnum.TILE_SPIKES + stage;
+            childFront.frameName = childBack.frameName + "_fg";
+
             if (stage == 0) {
                 state = STATE_INACTIVE;
             }
@@ -100,7 +100,7 @@ public class TileSpikes extends BaseTile {
     }
 
     @Override
-    public void raise(boolean stuck) {
+    public void raise() {
         if (state == STATE_INACTIVE) {
             state = STATE_RAISING;
 //    PlaySound("spikes")

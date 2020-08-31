@@ -281,7 +281,7 @@ public class LevelLoader extends BaseLoader {
                 tile.setBack(level.getLevelType().toString().toLowerCase() + "_wall_" + t.getModifier());
             }
         } else if (element == TileTypeEnum.TILE_FLOOR || element == TileTypeEnum.TILE_SPACE) {
-            tile.getChild().get("back").put("frameName", level.getLevelType().toString().toLowerCase() + "_" + t.getElement() + "_" + t.getModifier());
+            tile.getChildBack().setFrameName(level.getLevelType().toString().toLowerCase() + "_" + t.getElement() + "_" + t.getModifier());
         } else if (element == TileTypeEnum.TILE_STUCK_BUTTON) {
             tile.setBack(level.getLevelType().toString().toLowerCase() + "_1");
             tile.setFront(tile.getBack() + "_fg");
@@ -300,13 +300,12 @@ public class LevelLoader extends BaseLoader {
         } else if (element == TileTypeEnum.TILE_EXIT_RIGHT) {
             tile = Constants.SPRITE_TYPE.equals("dos") ? new TileExitDoor(tile, 9, 8) : new TileExitDoor(tile, 8, 10);
         } else if (element == TileTypeEnum.TILE_TORCH || element == TileTypeEnum.TILE_TORCH_WITH_DEBRIS) {
-            tile.getChild().get("back").put("frames", GameUtil.generateFrameNames("fire_", 1, 9, "", true, 1));
+            tile.getChildBack().setFrames(GameUtil.generateFrameNames("fire_", 1, 9, "", true, 1));
             if (level.getLevelType() == LevelTypeEnum.PALACE && Constants.SPRITE_TYPE.equals("mac")) {
-                tile.getChild().get("back").put("x", 41);
-                tile.getChild().get("back").put("y", 16);
+                tile.getChildBack().setX(41).setY(16);
             } else {
-                tile.getChild().get("back").put("x", 40);
-                tile.getChild().get("back").put("y", 18);
+                tile.getChildBack().setX(40).setY(18);
+
             }
 
         } else if (element == TileTypeEnum.TILE_POTION) {
@@ -325,20 +324,19 @@ public class LevelLoader extends BaseLoader {
             int px, py;
             if (Constants.SPRITE_TYPE.equals("mac")) {
                 if (t.getModifier() == PotionEnum.POTION_LIFE.ordinal()) {
-                    tile.getChild().get("front").put("frames", GameUtil.generateFrameNames("bubble_", 1, 6, "_" + colors[t.getModifier()], false, 2));
+                    tile.getChildFront().setFrames(GameUtil.generateFrameNames("bubble_", 1, 6, "_" + colors[t.getModifier()], false, 2));
                 }
                 px = 20;
                 py = 52;
             } else {
-                tile.getChild().get("front").put("frames", GameUtil.generateFrameNames("bubble_", 1, 7, "_" + colors[t.getModifier()], true, 1));
+                tile.getChildFront().setFrames(GameUtil.generateFrameNames("bubble_", 1, 7, "_" + colors[t.getModifier()], true, 1));
                 px = 25;
                 py = 53;
                 if (t.getModifier() > PotionEnum.POTION_HEALTH.ordinal() && t.getModifier() < PotionEnum.POTION_POISON.ordinal()) {
                     py -= 4;
                 }
             }
-            tile.getChild().get("front").put("x", px);
-            tile.getChild().get("front").put("y", py);
+            tile.getChildFront().setX(px).setY(py);
             tile.setHasObject(true);
         } else if (element == TileTypeEnum.TILE_TAPESTRY) {
             if (level.getLevelType() == LevelTypeEnum.PALACE && t.getModifier() > 0) {
@@ -351,11 +349,10 @@ public class LevelLoader extends BaseLoader {
                 tile.setFront(tile.getBack() + "_fg");
             }
             if (getTileAt(x - 1, y, room).getElement() == TileTypeEnum.TILE_LATTICE_SUPPORT.ordinal()) {
-                tile.getChild().get("back").put("framename", level.getLevelType().toString().toLowerCase() + "_" + TileTypeEnum.TILE_LATTICE_SUPPORT + "_fg");
+                tile.getChildBack().setFrameName(level.getLevelType().toString().toLowerCase() + "_" + TileTypeEnum.TILE_LATTICE_SUPPORT + "_fg");
             }
         } else if (element == TileTypeEnum.TILE_BALCONY_RIGHT) {
-            tile.getChild().get("back").put("framename", level.getLevelType().toString().toLowerCase() + "_balcony");
-            tile.getChild().get("back").put("y", -4);
+            tile.getChildBack().setFrameName(level.getLevelType().toString().toLowerCase() + "_balcony").setY(-4);
         }
         return tile;
     }

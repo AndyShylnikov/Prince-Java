@@ -262,9 +262,13 @@ public class BaseTile extends SourceTile {
         }
     }
 
-    class TileChild {
-        int x, y, height;
-        boolean visible;
-        String frameName;
+    public BaseTile setChildBack(TileChild childBack) {
+        this.childBack = childBack;
+        return this;
+    }
+
+    public BaseTile setChildFront(TileChild childFront) {
+        this.childFront = childFront;
+        return this;
     }
 }

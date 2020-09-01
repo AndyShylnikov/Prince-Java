@@ -31,6 +31,8 @@ public class LoadingState extends GameState {
         new SpriteLoader().loadItems();
         new AnimationLoader().loadItems();
         new LevelLoader().loadItems();
+        new SceneLoader().loadItems();
+        isDone=true;
 
     }
 

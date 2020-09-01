@@ -2,14 +2,12 @@ package prince.utils;
 
 import prince.pojo.AnimationElement;
 import prince.pojo.FrameDefine;
-import prince.uielems.Level;
 import prince.pojo.SwordAnimation;
+import prince.uielems.Level;
+import prince.uielems.Scene;
 import prince.uielems.Sprite;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameStorage {
     private static GameStorage instance;
@@ -18,6 +16,7 @@ public class GameStorage {
     private Map<String, Map<String, AnimationElement>> sequencesMap = new HashMap<>();
     private Map<String, List<FrameDefine>> frameDefs = new HashMap();
     private List<SwordAnimation> swordAnimations = new ArrayList<>();
+    private List<Scene> scenes = new ArrayList<>();
 
     private GameStorage() {
         levels = new HashMap<>();
@@ -70,5 +69,14 @@ public class GameStorage {
         return swordAnimations;
     }
 
+    public Scene getScene(int sceneNumber) {
+        return scenes.get(sceneNumber);
+    }
+
+    public void addScene(Scene scene) {
+        scenes.add(scene);
+        scenes.sort(Comparator.comparingInt(Scene::getSceneNumber));
+
+    }
 
 }

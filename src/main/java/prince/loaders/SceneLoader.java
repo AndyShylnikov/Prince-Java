@@ -27,7 +27,6 @@ public class SceneLoader extends BaseLoader {
             for (File file : Objects.requireNonNull(sceneFolder.listFiles())) {
                 parseJson(file);
             }
-            System.out.println();
         }
     }
 

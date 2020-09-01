@@ -5,6 +5,7 @@ public final class Constants {
 
     public static final String LEVELS_FOLDER_PATH = "src/main/resources/levels";
     public static final String SPRITES_FOLDER_PATH = "src/main/resources/sprites";
+    public static final String SCENES_FOLDER_PATH = "src/main/resources/scenes";
 
     public static final String SPRITE_TYPE = "dos"; //TODO: Change it to "mac" if need
 

@@ -4,15 +4,15 @@ package prince;
 import prince.enums.GameStateEnum;
 import prince.states.GameState;
 import prince.states.LoadingState;
+import prince.states.SplashState;
 
 import java.awt.*;
 
 
 public class GameStateManager {
 
-    private GameState currentStateInstance;
-
     private static GameStateManager instance;
+    private GameState currentStateInstance;
 
     private GameStateManager() {
         currentStateInstance = new LoadingState(this);
@@ -32,7 +32,13 @@ public class GameStateManager {
     public void update() {
         currentStateInstance.update();
         if (currentStateInstance.isDone()) {
-//            TODO: perform handling ending of state
+
+            if (currentStateInstance.getClass().equals(LoadingState.class)) {
+                currentStateInstance = new SplashState(this);
+                currentStateInstance.init();
+            } else if (currentStateInstance.getClass().equals(SplashState.class)) {
+//                TODO: finish splash
+            }
         }
     }
 

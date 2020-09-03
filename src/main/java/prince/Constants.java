@@ -7,9 +7,8 @@ public final class Constants {
     public static final String SPRITES_FOLDER_PATH = "src/main/resources/sprites";
     public static final String SCENES_FOLDER_PATH = "src/main/resources/scenes";
 
-    public static final String SPRITE_TYPE = "dos"; //TODO: Change it to "mac" if need
-
     public static final String ANIMATION_PATH = "src/main/resources/animations";
+    public static final String CONFIG_PATH = "src/main/resources/config/config.json";
 
     public static final int ROOM_WIDTH_ITEMS = 10;
     public static final int ROOM_HEIGHT_ITEMS = 3;

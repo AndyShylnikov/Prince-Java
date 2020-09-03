@@ -2,6 +2,7 @@ package prince.loaders;
 
 
 import prince.Constants;
+import prince.GameScreen;
 import prince.enums.*;
 import prince.pojo.GuardLocation;
 import prince.pojo.LevelEvent;
@@ -298,10 +299,10 @@ public class LevelLoader extends BaseLoader {
         } else if (element == TileTypeEnum.TILE_LOOSE_BOARD) {
             tile = new TileLooseBoard(tile);
         } else if (element == TileTypeEnum.TILE_EXIT_RIGHT) {
-            tile = Constants.SPRITE_TYPE.equals("dos") ? new TileExitDoor(tile, 9, 8) : new TileExitDoor(tile, 8, 10);
+            tile = GameScreen.getEnvironment().equals("dos") ? new TileExitDoor(tile, 9, 8) : new TileExitDoor(tile, 8, 10);
         } else if (element == TileTypeEnum.TILE_TORCH || element == TileTypeEnum.TILE_TORCH_WITH_DEBRIS) {
             tile.getChildBack().setFrames(GameUtil.generateFrameNames("fire_", 1, 9, "", true, 1));
-            if (level.getLevelType() == LevelTypeEnum.PALACE && Constants.SPRITE_TYPE.equals("mac")) {
+            if (level.getLevelType() == LevelTypeEnum.PALACE && GameScreen.getEnvironment().equals("mac")) {
                 tile.getChildBack().setX(41).setY(16);
             } else {
                 tile.getChildBack().setX(40).setY(18);
@@ -311,7 +312,7 @@ public class LevelLoader extends BaseLoader {
         } else if (element == TileTypeEnum.TILE_POTION) {
             String[] colors = {"red", "red", "red", "green", "green", "blue", "blue"};
             String potion = tile.getFront() + "_1";
-            if (Constants.SPRITE_TYPE.equals("mac")) {
+            if (GameScreen.getEnvironment().equals("mac")) {
                 if (t.getModifier() == 2) {
                     potion = tile.getFront() + "_2";
                 }
@@ -322,7 +323,7 @@ public class LevelLoader extends BaseLoader {
             }
             tile.setFront(potion);
             int px, py;
-            if (Constants.SPRITE_TYPE.equals("mac")) {
+            if (GameScreen.getEnvironment().equals("mac")) {
                 if (t.getModifier() == PotionEnum.POTION_LIFE.ordinal()) {
                     tile.getChildFront().setFrames(GameUtil.generateFrameNames("bubble_", 1, 6, "_" + colors[t.getModifier()], false, 2));
                 }

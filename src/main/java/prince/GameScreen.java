@@ -14,9 +14,11 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     // Origin resolution of game TODO: make dynamic change of resoution
     public static final int WIDTH = 320;
     public static final int HEIGHT = 200;
-
-    private int scale = 1;
-
+    private static GameScreen instance = null;
+    private static int scale = 1;
+    private static String environment = "dos";
+    private GameStateManager manager;
+    private JFrame frame;
     private Thread thread;
     private boolean isRunning;
     private int FPS = 8;
@@ -28,6 +30,9 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     private GameScreen() {
 
         super();
+        Map<String, Object> config = JsonHelper.getMap(Constants.CONFIG_PATH);
+        scale = ((int) config.get("initial_scale"));
+        environment = ((String) config.get("environment"));
         setPreferredSize(new Dimension(WIDTH * scale, HEIGHT * scale));
         setFocusable(true);
         requestFocus();

@@ -33,7 +33,7 @@ public class AnimationLoader extends BaseLoader {
                 List framedefList = (List) map.get("framedef");
                 proceedFrameDefs(framedefList, animationPack);
             } else {
-                List swordAnimList = (List) map.get("swordtab" + Constants.SPRITE_TYPE);
+                List swordAnimList = (List) map.get("swordtab" + GameScreen.getEnvironment());
                 proceedSword(swordAnimList);
             }
         }

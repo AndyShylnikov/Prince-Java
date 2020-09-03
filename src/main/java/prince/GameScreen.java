@@ -1,16 +1,15 @@
 package prince;
 
+import prince.utils.JsonHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.Map;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
-    private static GameScreen instance = null;
-    private GameStateManager manager;
-    private JFrame frame;
-
     // Origin resolution of game TODO: make dynamic change of resoution
     public static final int WIDTH = 320;
     public static final int HEIGHT = 200;
@@ -48,6 +47,22 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     }
 
+    public synchronized static GameScreen getInstance() {
+        GameScreen result = instance;
+        if (instance == null) {
+            instance = new GameScreen();
+        }
+        return instance;
+    }
+
+    public static int getScale() {
+        return scale;
+    }
+
+    public static String getEnvironment() {
+        return environment;
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -55,12 +70,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        manager.keyPressed(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        manager.keyReleased(e.getKeyCode());
     }
 
     @Override
@@ -84,15 +99,8 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         }
     }
 
-    public synchronized static GameScreen getInstance() {
-        GameScreen result = instance;
-        if (instance == null) {
-            instance = new GameScreen();
-        }
-        return instance;
-    }
-
     private void init() {
+
         img = new BufferedImage(WIDTH * scale, HEIGHT * scale, BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) img.getGraphics();
         isRunning = true;
@@ -131,9 +139,5 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             addKeyListener(this);
             thread.start();
         }
-    }
-
-    public int getScale() {
-        return scale;
     }
 }

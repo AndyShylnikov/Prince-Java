@@ -1,6 +1,7 @@
 package prince.loaders;
 
 import prince.Constants;
+import prince.GameScreen;
 import prince.uielems.Sprite;
 import prince.utils.GameStorage;
 import prince.utils.JsonHelper;
@@ -28,7 +29,7 @@ public class SpriteLoader extends BaseLoader {
 
                 if (file.isDirectory()) {
                     goThroughFolder(file);
-                } else if (file.getName().contains(".json") && file.getName().contains("-" + Constants.SPRITE_TYPE)) {
+                } else if (file.getName().contains(".json") && file.getName().contains("-" + GameScreen.getEnvironment())) {
                     parseJson(file);
                 }
             }
@@ -39,7 +40,7 @@ public class SpriteLoader extends BaseLoader {
         if (jsonFile.getName().startsWith("guard-")) {
             for (File guardFile : jsonFile.getParentFile().listFiles()) {
                 String guardFileName = guardFile.getName();
-                if (guardFileName.contains(".png") && guardFileName.startsWith("guard") && guardFileName.contains("-" + Constants.SPRITE_TYPE)) {
+                if (guardFileName.contains(".png") && guardFileName.startsWith("guard") && guardFileName.contains("-" + GameScreen.getEnvironment())) {
                     loadSprite(jsonFile, guardFile);
                 }
             }
@@ -64,7 +65,7 @@ public class SpriteLoader extends BaseLoader {
 
 
                 if (key.startsWith("guard-")) {
-                    String substring = pngFile.getName().substring(0, pngFile.getName().indexOf("-" + Constants.SPRITE_TYPE));
+                    String substring = pngFile.getName().substring(0, pngFile.getName().indexOf("-" + GameScreen.getEnvironment()));
                     key = key.replace("guard-", substring + "-");
                 }
                 Sprite sprite = new Sprite(width, height, image.getSubimage(x, y, width, height), key);

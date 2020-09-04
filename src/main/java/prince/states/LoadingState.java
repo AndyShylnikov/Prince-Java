@@ -14,8 +14,9 @@ import java.io.IOException;
 import static prince.Constants.FONT_PATH;
 
 public class LoadingState extends GameState {
-
+    private long startTime;
     private Font font;
+    private boolean isLoaded = false;
 
     public LoadingState(GameStateManager manager) {
         super(manager);
@@ -24,15 +25,16 @@ public class LoadingState extends GameState {
     @Override
     public void init() {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(FONT_PATH)).deriveFont(20f * GameScreen.getInstance().getScale());
+            font = Font.createFont(Font.TRUETYPE_FONT, new File(FONT_PATH)).deriveFont(20f * GameScreen.getScale());
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
+        startTime = System.currentTimeMillis();
         new SpriteLoader().loadItems();
         new AnimationLoader().loadItems();
         new LevelLoader().loadItems();
         new SceneLoader().loadItems();
-        isDone=true;
+        isLoaded = true;
 
     }
 
@@ -43,8 +45,8 @@ public class LoadingState extends GameState {
             g.setFont(font);
             String loadingStr = "Loading...";
             int textWidth = g.getFontMetrics().stringWidth(loadingStr);
-            int x = (GameScreen.WIDTH * GameScreen.getInstance().getScale() - textWidth) / 2;
-            int y = GameScreen.HEIGHT * GameScreen.getInstance().getScale() / 2;
+            int x = (GameScreen.WIDTH * GameScreen.getScale() - textWidth) / 2;
+            int y = GameScreen.HEIGHT * GameScreen.getScale() / 2;
 
             g.drawString(loadingStr, x, y);
         }
@@ -53,6 +55,9 @@ public class LoadingState extends GameState {
 
     @Override
     public void update() {
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        if ((isLoaded && elapsedTime > 4000) && (isLoaded || elapsedTime > 4000))
+            isDone = true;
     }
 
     @Override

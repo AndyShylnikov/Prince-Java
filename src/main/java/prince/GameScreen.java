@@ -32,11 +32,12 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
         Map<String, Object> config = JsonHelper.getMap(Constants.CONFIG_PATH);
         scale = ((int) config.get("initial_scale"));
         environment = ((String) config.get("environment"));
+        String title = ((String) config.get("title"));
         setPreferredSize(new Dimension(WIDTH * scale, HEIGHT * scale));
         setFocusable(true);
         requestFocus();
 
-        frame = new JFrame("Prince of Persia"); //TODO: move title to json
+        frame = new JFrame(title);
         frame.setBackground(Color.BLACK);
         frame.setContentPane(this);
         frame.setResizable(false);

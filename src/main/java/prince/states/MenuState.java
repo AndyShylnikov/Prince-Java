@@ -151,8 +151,8 @@ public class MenuState extends GameState {
                 g.setColor(new Color(Constants.COLOR_DARK_RED));
 
 
-            int x = 110 * GameScreen.getScale();
-            int y = (85 + i * 25) * GameScreen.getScale();
+            int x = (int) (110 * GameScreen.getHScale());
+            int y = (int) ((85 + i * 25) * GameScreen.getVScale());
             g.drawString(Constants.MENU_OPTIONS[i], x, y);
         }
     }

@@ -25,7 +25,7 @@ public class LoadingState extends GameState {
     @Override
     public void init() {
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File(FONT_PATH)).deriveFont(20f * GameScreen.getScale());
+            font = Font.createFont(Font.TRUETYPE_FONT, new File(FONT_PATH)).deriveFont(20f * GameScreen.getHScale());
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
@@ -45,8 +45,8 @@ public class LoadingState extends GameState {
             g.setFont(font);
             String loadingStr = "Loading...";
             int textWidth = g.getFontMetrics().stringWidth(loadingStr);
-            int x = (GameScreen.WIDTH * GameScreen.getScale() - textWidth) / 2;
-            int y = GameScreen.HEIGHT * GameScreen.getScale() / 2;
+            int x = (int) ((GameScreen.WIDTH * GameScreen.getHScale() - textWidth) / 2);
+            int y = (int) (GameScreen.HEIGHT * GameScreen.getVScale() / 2);
 
             g.drawString(loadingStr, x, y);
         }

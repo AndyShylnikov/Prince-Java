@@ -37,8 +37,8 @@ public class ImageElement {
     }
 
     public ImageElement setPosition(int x, int y) {
-        this.x = x * GameScreen.getScale();
-        this.y = y * GameScreen.getScale();
+        this.x = (int) (x * GameScreen.getHScale());
+        this.y = (int) (y * GameScreen.getVScale());
 
         return this;
     }
@@ -49,8 +49,8 @@ public class ImageElement {
     }
 
     public ImageElement setDimensions(int width, int height) {
-        this.width = width * GameScreen.getScale();
-        this.height = height * GameScreen.getScale();
+        this.width = (int) (width * GameScreen.getHScale());
+        this.height = (int) (height * GameScreen.getVScale());
         return this;
     }
 
@@ -59,26 +59,26 @@ public class ImageElement {
     }
 
     public ImageElement setScale(float scale) {
-        width *= scale * GameScreen.getScale();
-        height *= scale * GameScreen.getScale();
+        width *= scale * GameScreen.getHScale();
+        height *= scale * GameScreen.getVScale();
 
         return this;
     }
 
     public int getX() {
-        return x/GameScreen.getScale();
+        return (int) (x/GameScreen.getHScale());
     }
 
     public int getY() {
-        return y/GameScreen.getScale();
+        return (int) (y/GameScreen.getVScale());
     }
 
     public int getWidth() {
-        return width/GameScreen.getScale();
+        return (int) (width/GameScreen.getHScale());
     }
 
     public int getHeight() {
-        return height/GameScreen.getScale();
+        return (int) (height/GameScreen.getVScale());
     }
 
     @Override

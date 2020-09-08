@@ -29,4 +29,18 @@ public final class Constants {
 
     public static final int ROOM_WIDTH = 320;
     public static final int ROOM_HEIGHT = BLOCK_HEIGHT * 3;
+    public static final String MENU_BACKGROUND_PATH = "src/main/resources/images/start_menu.jpg";
+    public static final String MENU_HIGHLIGHTED_ITEM = "src/main/resources/images/item_highlight_hd.png";
+    public static final String CREDITS_PATH = "src/main/resources/images/game_credits.jpg";
+    public static final String[] MENU_OPTIONS = {"Start", "Load game", "Credits", "Exit"};
+
+    //    Colors
+    public static final int COLOR_RED = 0xAA0000;
+    public static final int COLOR_GREEN = 0x00AA00;
+    public static final int COLOR_YELLOW = 0xFFFF55;
+    public static final int COLOR_BLACK = 0x0000000;
+    public static final int COLOR_WHITE = 0xFFFFFFF;
+    public static final int COLOR_GRAY = 0x404040;
+    public static final int COLOR_NAVY = 0x080030FF;
+    public static final int COLOR_DARK_RED = 0x810000;
 }

@@ -78,7 +78,6 @@ public class SplashState extends GameState {
 
     @Override
     public void keyPressed(int k) {
-        System.out.println(k);
         if (k == KeyEvent.VK_ESCAPE) {
             isDone = true;
             playerThread.stop();

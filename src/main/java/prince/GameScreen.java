@@ -14,15 +14,17 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     public static final int WIDTH = 320;
     public static final int HEIGHT = 200;
     private static GameScreen instance = null;
+    private static float vScale = 1;
+    private static float hScale = 1;
     private static int scale = 1;
     private static String environment = "dos";
+    private final Dimension screenSize;
     private GameStateManager manager;
     private JFrame frame;
     private Thread thread;
     private boolean isRunning;
     private int FPS = 8;
     private long targetTime = 1000 / FPS;
-
     private Graphics2D g;
     private BufferedImage img;
 
@@ -30,13 +32,17 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
         super();
         Map<String, Object> config = JsonHelper.getMap(Constants.CONFIG_PATH);
-        scale = ((int) config.get("initial_scale"));
+        screenSize = getToolkit().getScreenSize();
+        vScale = ((float) screenSize.height) / HEIGHT;
+        hScale = ((float) screenSize.width) / WIDTH;
         environment = ((String) config.get("environment"));
-        setPreferredSize(new Dimension(WIDTH * scale, HEIGHT * scale));
+        String title = ((String) config.get("title"));
+        setPreferredSize(new Dimension(((int) (WIDTH * hScale)), ((int) (HEIGHT * vScale))));
         setFocusable(true);
         requestFocus();
-
-        frame = new JFrame("Prince of Persia"); //TODO: move title to json
+        setBackground(Color.BLACK);
+        frame = new JFrame(title);
+        frame.setUndecorated(true);
         frame.setBackground(Color.BLACK);
         frame.setContentPane(this);
         frame.setResizable(false);
@@ -101,7 +107,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
 
     private void init() {
 
-        img = new BufferedImage(WIDTH * scale, HEIGHT * scale, BufferedImage.TYPE_INT_RGB);
+        img = new BufferedImage(((int) (WIDTH * hScale)), (int) (HEIGHT * vScale), BufferedImage.TYPE_INT_RGB);
         g = (Graphics2D) img.getGraphics();
         isRunning = true;
         manager = GameStateManager.getInstance();
@@ -139,5 +145,13 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
             addKeyListener(this);
             thread.start();
         }
+    }
+
+    public static float getVScale() {
+        return vScale;
+    }
+
+    public static float getHScale() {
+        return hScale;
     }
 }

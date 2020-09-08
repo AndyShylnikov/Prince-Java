@@ -2,9 +2,7 @@ package prince;
 
 
 import prince.enums.GameStateEnum;
-import prince.states.GameState;
-import prince.states.LoadingState;
-import prince.states.SplashState;
+import prince.states.*;
 
 import java.awt.*;
 
@@ -37,7 +35,11 @@ public class GameStateManager {
                 currentStateInstance = new SplashState(this);
                 currentStateInstance.init();
             } else if (currentStateInstance.getClass().equals(SplashState.class)) {
-//                TODO: finish splash
+                currentStateInstance = new MenuState(this);
+                currentStateInstance.init();
+            }
+            else if (currentStateInstance.getClass().equals(MenuState.class)){
+               //TODO: make game starting
             }
         }
     }

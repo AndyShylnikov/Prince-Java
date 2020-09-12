@@ -5,7 +5,7 @@ import prince.enums.SceneActionEnum;
 
 public class SceneSequenceItem {
     private SceneActionEnum actionType;
-    private int actorId, x, y, seconds, state, objectId;
+    private int actorId, x, y, frames, state, objectId;
     private String actorName;
     private String actionName;
     private String soundName;
@@ -48,12 +48,12 @@ public class SceneSequenceItem {
         return this;
     }
 
-    public int getSeconds() {
-        return seconds;
+    public int getFrames() {
+        return frames;
     }
 
-    public SceneSequenceItem setSeconds(int seconds) {
-        this.seconds = seconds;
+    public SceneSequenceItem setFrames(int frames) {
+        this.frames = frames;
         return this;
     }
 

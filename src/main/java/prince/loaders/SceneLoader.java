@@ -32,7 +32,6 @@ public class SceneLoader extends BaseLoader {
 
     private void parseJson(File file) {
         int sceneNum = Integer.parseInt(file.getName().replace("scene", "").replace(".json", ""));
-        System.out.println("Creating " + sceneNum + " scene");
         Map<String, Object> sceneMap = JsonHelper.getMap(file.getAbsolutePath());
         List<SceneSequenceItem> sequenceItems = ((List<Map>) sceneMap.get("program")).stream().
                 map(this::createSequenceItem).collect(Collectors.toList());
@@ -60,8 +59,8 @@ public class SceneLoader extends BaseLoader {
 //                    These actions have no additional params
                 break;
             case WAIT:
-                int seconds = (int) sceneSequence.get("p1");
-                item.setSeconds(seconds);
+                int frames = (int) sceneSequence.get("p1");
+                item.setFrames(frames);
                 break;
             case ACTION:
                 actorId = (int) sceneSequence.get("p1");

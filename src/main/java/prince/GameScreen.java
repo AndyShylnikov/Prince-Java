@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.util.Map;
 
 public class GameScreen extends JPanel implements Runnable, KeyListener {
-    // Origin resolution of game TODO: make dynamic change of resoution
     public static final int WIDTH = 320;
     public static final int HEIGHT = 200;
     private static GameScreen instance = null;
@@ -124,6 +123,7 @@ public class GameScreen extends JPanel implements Runnable, KeyListener {
     }
 
     private void update() {
+        g.clearRect(0,0,screenSize.width,screenSize.height);
         manager.update();
 
     }

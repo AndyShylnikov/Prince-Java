@@ -47,4 +47,8 @@ public final class Constants {
     public static final int COLOR_GRAY = 0x404040;
     public static final int COLOR_NAVY = 0x080030FF;
     public static final int COLOR_DARK_RED = 0x810000;
+    public static final int TOP_SPEED_WEIGHTLESS = 4;
+    public static final int GRAVITY_WEIGHTLESS = 1;
+    public static final int GRAVITY_NORMAL = 3;
+    public static final int TOP_SPEED_NORMAL = 33;
 }

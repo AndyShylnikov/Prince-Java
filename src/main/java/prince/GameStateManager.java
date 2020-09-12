@@ -37,9 +37,11 @@ public class GameStateManager {
             } else if (currentStateInstance.getClass().equals(SplashState.class)) {
                 currentStateInstance = new MenuState(this);
                 currentStateInstance.init();
-            }
-            else if (currentStateInstance.getClass().equals(MenuState.class)){
-               //TODO: make game starting
+            } else if (currentStateInstance.getClass().equals(MenuState.class)) {
+                //Start 1st scene
+                currentStateInstance = new SceneState(this, 1);
+                currentStateInstance.init();
+
             }
         }
     }

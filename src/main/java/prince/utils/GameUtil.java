@@ -1,7 +1,11 @@
 package prince.utils;
 
+import prince.Constants;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class GameUtil {
     public static String[] generateFrameNames(String prefix, int start, int finish, String suffix, boolean shuffle) {
@@ -31,14 +35,40 @@ public class GameUtil {
                 frame = (frame + 1) % length;
             }
         } else {
-            for (int i = start; i <= finish; i++) {
-                for (int j = 1; j <= repeatFrame; j++) {
-                    frameNames.add(prefix + i + suffix);
+            for (int f = 1; f <= finish; f++) {
+                for (int r = 1; r <= repeatFrame; r++) {
+                    frameNames.add(prefix + f + suffix);
                 }
             }
         }
-        String[] strings = new String[frameNames.size()];
-        return frameNames.toArray(strings);
+        String[] names = new String[frameNames.size()];
+        return frameNames.toArray(names);
     }
 
+
+    public static String getSoundName(String soundName) {
+        File file = new File(Constants.SOUND_PATH_TEMPLATE + soundName + ".mp3");
+        return file.getAbsolutePath();
+    }
+
+
+    public static int convertX(float x) {
+        return (int) (x * 320 / 140);
+    }
+
+    public static int convertXtoBlockX(float x) {
+        return (int) ((x - 7) / 14);
+    }
+
+    public static int convertYtoBlockY(float y) {
+        return (int) (y / Constants.BLOCK_HEIGHT);
+    }
+
+    public int convertBlockXtoX(int blockX) {
+        return blockX * 14 + 7;
+    }
+
+    public int convertBlockYtoY(int blockY) {
+        return (blockY + 1) * Constants.BLOCK_HEIGHT - 10;
+    }
 }

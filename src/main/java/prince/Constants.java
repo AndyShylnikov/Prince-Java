@@ -17,6 +17,10 @@ public final class Constants {
     public static final String SPLASH_SCREEN_PORTED_PATH = "src/main/resources/titles/message-ported-%s.png";
 
     public static final String MAIN_THEME_MP3_PATH = "src/main/resources/songs/main-theme.mp3";
+
+    public static final String SONGS_PATH_TEMPLATE="src/main/resources/songs/%s.mp3";
+
+    public static final String SOUND_PATH_TEMPLATE="src/main/resources/sounds/";
     public static final int ROOM_WIDTH_ITEMS = 10;
     public static final int ROOM_HEIGHT_ITEMS = 3;
 
@@ -43,4 +47,8 @@ public final class Constants {
     public static final int COLOR_GRAY = 0x404040;
     public static final int COLOR_NAVY = 0x080030FF;
     public static final int COLOR_DARK_RED = 0x810000;
+    public static final int TOP_SPEED_WEIGHTLESS = 4;
+    public static final int GRAVITY_WEIGHTLESS = 1;
+    public static final int GRAVITY_NORMAL = 3;
+    public static final int TOP_SPEED_NORMAL = 33;
 }

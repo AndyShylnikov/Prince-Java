@@ -11,4 +11,8 @@ public class AnimationElement {
         this.name = name;
         this.sequences = sequences;
     }
+
+    public List<Sequence> getSequences() {
+        return sequences;
+    }
 }

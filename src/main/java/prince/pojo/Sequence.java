@@ -1,9 +1,11 @@
 package prince.pojo;
 
+import prince.enums.AnimationTypeEnum;
+
 public class Sequence {
     private int p1;
     private int p2;
-    private int cmd;
+    private AnimationTypeEnum cmdType;
     private String action;
 
     public int getP1() {
@@ -24,12 +26,12 @@ public class Sequence {
         return this;
     }
 
-    public int getCmd() {
-        return cmd;
+    public AnimationTypeEnum getCmdType() {
+        return cmdType;
     }
 
-    public Sequence setCmd(int cmd) {
-        this.cmd = cmd;
+    public Sequence setCmdType(AnimationTypeEnum cmdType) {
+        this.cmdType = cmdType;
         return this;
     }
 

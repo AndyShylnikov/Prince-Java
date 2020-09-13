@@ -1,6 +1,7 @@
 package prince.loaders;
 
 import prince.*;
+import prince.enums.AnimationTypeEnum;
 import prince.pojo.AnimationElement;
 import prince.pojo.FrameDefine;
 import prince.pojo.Sequence;
@@ -89,7 +90,7 @@ public class AnimationLoader extends BaseLoader {
                         }
                     } else if (x.equals("cmd")) {
                         if (y.getClass().equals(Integer.class)) {
-                            seqInstance.setCmd((Integer) y);
+                            seqInstance.setCmdType(AnimationTypeEnum.values()[(int) y]);
                         }
                     } else if (x.equals("p2")) {
                         if (y.getClass().equals(Integer.class)) {

@@ -44,14 +44,12 @@ public class LevelLoader extends BaseLoader {
 
             }
         }
-        System.out.println();
     }
 
     private void parseJson(File file) {
         Map<String, Object> levelMap = JsonHelper.getMap(file.getAbsolutePath());
 
         int levelNum = (int) levelMap.get("number");
-        System.out.println("Parsing level = " + levelNum);
         int levelHeight = (int) levelMap.get("height");
         int levelWidth = (int) levelMap.get("width");
         LevelTypeEnum levelType = LevelTypeEnum.values()[((int) levelMap.get("type"))];
@@ -180,7 +178,6 @@ public class LevelLoader extends BaseLoader {
     }
 
     private void buildRoomWithTiles(Room currentRoom) {
-        System.out.println("Room id = " + currentRoom.getRoomId());
 
         for (int y = 2; y >= 0; y--) {
             for (int x = 0; x <= 9; x++) {

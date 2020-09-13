@@ -50,7 +50,7 @@ public class SceneLoader extends BaseLoader {
                 int y = (int) sceneSequence.get("p4");
                 int direction = (int) sceneSequence.get("p5");
                 item.setActorId(actorId).
-                        setActionName(actorName).setX(x).setY(y).
+                        setActorName(actorName).setX(x).setY(y).
                         setDirection(direction <= 0 ? DirectionEnum.FACE_LEFT : DirectionEnum.FACE_RIGHT);
                 break;
             case START:
@@ -65,7 +65,7 @@ public class SceneLoader extends BaseLoader {
             case ACTION:
                 actorId = (int) sceneSequence.get("p1");
                 String actionName = (String) sceneSequence.get("p2");
-                item.setActorId(actorId).setActorName(actionName);
+                item.setActorId(actorId).setActionName(actionName);
                 break;
             case PLAY_SONG:
                 String songName = (String) sceneSequence.get("p1");
